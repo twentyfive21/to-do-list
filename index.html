@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-do-List</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+  />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="main-section">
+        <!-- to do form -->
+        <form class="to-do-form">
+            <p class="alert"></p>
+            <h1>To do List</h1>
+            <div class="form">
+              <input type="text" id="task" placeholder="task"/>
+              <button type="submit" class="submit-btn">
+                Submit
+              </button>
+            </div>
+          </form>
+          <!-- to dos -->
+          <div class="to-do-container">
+                <section class="to-do-items">
+                <p class="title">Write</p>
+                <div class="btn-container">
+                  <button type="button" class="edit-btn">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="delete-btn">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+                </section>
+            <!-- clear button -->
+            <button type="button" class="clear-btn">Clear items</button>
+          </div>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>
