@@ -10,7 +10,7 @@
 :root {
 --light-blue : #F1F5F8;
 --white: #FFFFFF;
---box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+--box-shadow: 0 7px 10px rgba(0, 0, 0, 0.1);
 --light-pink: #FEC5E5;
 --medium-pink: #F2B8C6;
 --green: rgb(209, 252, 173);
@@ -63,12 +63,12 @@ input {
     letter-spacing: 2px;
 }
 
-.alert-danger {
+.alert-purple {
     color: #ba88ff;
     background: #e6e1f9;
   }
 
-.alert-success {
+.alert-green {
     color: #155724;
     background: #d1ecc1;
  }
