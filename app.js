@@ -2,10 +2,9 @@ const submitBtn = document.querySelector('.submit-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const alert = document.querySelector('.alert');
 const form = document.querySelector('.to-do-form');
-const formTask = document.querySelector('.task');
+const formTask = document.getElementById('task');
 const taskContainer = document.querySelector('.to-do-container');
 const taskList = document.querySelector('.to-do-items');
-
 
 // edit option 
 
