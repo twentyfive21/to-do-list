@@ -73,6 +73,10 @@ input {
     background: #d1ecc1;
  }
 /******    to do tasks   ******/
+.task-style {
+    margin-bottom: 0;
+    letter-spacing: 2px;
+}
 .to-do-container {
     visibility: hidden;
 }
