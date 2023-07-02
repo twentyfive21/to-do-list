@@ -38,8 +38,8 @@ h1 {
   background-color: var(--white);
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
-  width: 65vw;
-  margin-top: 125px;
+  width: 70vw;
+  margin: 120px 0px;
   padding: 35px 0px;
 }
 /******    top form     ******/
@@ -50,7 +50,7 @@ input {
     padding-left: 10px;
     font-size: 1rem;
     width: 35vw;
-    height: 4vh;
+    height: 5vh;
     margin-top: 12px;
     margin-bottom: 30px;
 }
@@ -61,6 +61,10 @@ input {
     cursor: pointer;
     border-radius: 5px;
     letter-spacing: 2px;
+}
+.submit-btn {
+    width: auto;
+    height: 5vh;
 }
 
 .alert-purple {
@@ -73,9 +77,13 @@ input {
     background: #d1ecc1;
  }
 /******    to do tasks   ******/
-.task-style {
+.list-style {
+    display: flex;
+    width: 40vw;
+    justify-content: space-between;
+    text-transform: capitalize;
     margin-bottom: 1em;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 .to-do-container {
     visibility: hidden;
@@ -85,17 +93,11 @@ input {
     visibility: visible;
 }
 
-.list-style {
-    display: flex;
-    width: 40vw;
-    justify-content: space-between;
-    text-transform: capitalize;
-}
 .clear-btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     color: var(--red);
 }
 
@@ -119,6 +121,17 @@ color:var(--light-pink);
     font-size: 0.9rem;
 }
 
-
+@media (max-width: 500px) {
+    .list-style {
+        width: 80vw;
+    }
+    .main-section {
+        width: 90vw;
+    }
+    input {
+        width: 60vw;
+        height: 4.5vh;
+    }
+}
 
 
