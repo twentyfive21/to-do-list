@@ -22,13 +22,19 @@ const addTask = (e) => {
     if (value && !editFlag){
         // passing new item to add to list
         createItem(id, value);
+         // display alert
+         displayAlert('item added to the list', 'green');
         taskContainer.classList.add('display-container');
+        // add to local storage 
+
+        
+        // set back to default 
+        backToDefault();
     // edits item
     } else if (value && editFlag) {
-        console.log("edit item");
-    // no item alerts user to submit one
+      backToDefault();
     } else {
-        console.log("no value submitted")
+        displayAlert('Please enter a value', 'purple');
     }
 };
 
@@ -52,10 +58,23 @@ const createItem = (id, value) => {
     </div>`;
     taskList.appendChild(element);
 }
-// display the alert 
 
+const displayAlert = (text, action) => {
+alert.textContent = text;
+alert.classList.add(`alert-${action}`);
 // remove the alert 
-
+setTimeout(() => {
+  alert.textContent = '';
+  alert.classList.remove(`alert-${action}`);
+}, 1000);
+}
+// set back to default
+const backToDefault = () => {
+  formTask.value = '';
+  editFlag = false;
+  editID = '';
+  submitBtn.textContent = 'submit';
+}
 // clear items 
 
 // delete single item 

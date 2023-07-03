@@ -130,7 +130,10 @@ color:var(--light-pink);
     }
     input {
         width: 60vw;
-        height: 4.5vh;
+        height: 4vh;
+    }
+    .submit-btn {
+        height: 4vh;
     }
 }
 
