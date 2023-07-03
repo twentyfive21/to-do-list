@@ -11,8 +11,15 @@ let editElement;
 let editFlag = false;
 let editID = '';
 
-// ~~~~~ Functions ~~~~~
-// Adding an item 
+// ~~~~~~~~~~~ Functions ~~~~~~~~~~~~~~~
+// ------ set back to default -----
+const backToDefault = () => {
+  formTask.value = '';
+  editFlag = false;
+  editID = '';
+  submitBtn.textContent = 'submit';
+}
+// ------ Adding an item ------- 
 const addTask = (e) => {
     e.preventDefault();
     const id = new Date().getTime().toString();
@@ -27,7 +34,7 @@ const addTask = (e) => {
         taskContainer.classList.add('display-container');
         // add to local storage 
 
-        
+
         // set back to default 
         backToDefault();
     // edits item
@@ -37,7 +44,7 @@ const addTask = (e) => {
         displayAlert('Please enter a value', 'purple');
     }
 };
-
+// ------ Adds item to DOM ------- 
 const createItem = (id, value) => {
     // creating container to hold each list item with their buttons
     const element = document.createElement('article');
@@ -58,7 +65,7 @@ const createItem = (id, value) => {
     </div>`;
     taskList.appendChild(element);
 }
-
+// ------ Displays alert  ------- 
 const displayAlert = (text, action) => {
 alert.textContent = text;
 alert.classList.add(`alert-${action}`);
@@ -68,14 +75,23 @@ setTimeout(() => {
   alert.classList.remove(`alert-${action}`);
 }, 1000);
 }
-// set back to default
-const backToDefault = () => {
-  formTask.value = '';
-  editFlag = false;
-  editID = '';
-  submitBtn.textContent = 'submit';
+
+// ------- Clear items --------
+const clearItem = () => {
+
+const items = document.querySelectorAll('.list-style');
+
+if (items.length > 0) {
+  items.forEach(item => taskList.removeChild(item));
 }
-// clear items 
+taskContainer.classList.remove('display-container');
+displayAlert('List cleared !', 'green');
+backToDefault();
+// local storage 
+
+
+
+}
 
 // delete single item 
 
@@ -85,6 +101,7 @@ const backToDefault = () => {
 // submit form 
 form.addEventListener('submit', addTask);
 // clear btn 
+clearBtn.addEventListener('click', clearItem)
 // load items 
 
 
