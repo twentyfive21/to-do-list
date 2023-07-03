@@ -6,6 +6,7 @@ const formTask = document.getElementById('task');
 const taskContainer = document.querySelector('.to-do-container');
 const taskList = document.querySelector('.to-do-items');
 
+
 // edit option 
 let editElement;
 let editFlag = false;
@@ -63,6 +64,10 @@ const createItem = (id, value) => {
         <i class="fas fa-trash"></i>
       </button>
     </div>`;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn'); 
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     taskList.appendChild(element);
 }
 // ------ Displays alert  ------- 
@@ -94,9 +99,25 @@ backToDefault();
 }
 
 // delete single item 
+const deleteItem = (e) => {
+  // goes up to parent element of button container , then once more to the article parent container. 
+  const element = (e.currentTarget.parentElement.parentElement);
+  // Dataset is a property used to access the data id in an attr. Then using dot notation use attr name you want. 
+  const id = element.dataset.id;
+  taskList.removeChild(element);
+  if (taskList.children.length === 0) {
+    taskContainer.classList.remove('display-container');
+  }
+  displayAlert('item removed', 'purple');
+  backToDefault();
+  // remove from local storage
 
+  
+}
 // edit func 
-
+const editItem = (e) => {
+  console.log(e.target);
+}
 // ~~~~ Event listeners ~~~~
 // submit form 
 form.addEventListener('submit', addTask);
