@@ -12,13 +12,36 @@ let editFlag = false;
 let editID = '';
 
 // ~~~~~~~~~~~ Functions ~~~~~~~~~~~~~~~
+// load items that already exist 
+const setList = () => {
+  let list = getLocalStorage();
+  if (list.length > 0) {
+    list.forEach(task => createItem(task.id, task.value))
+  }
+  taskContainer.classList.add('display-container');
+}
+// load items 
+window.addEventListener('DOMContentLoaded', setList);
+
 // ------ set back to default -----
 const backToDefault = () => {
   formTask.value = '';
   editFlag = false;
   editID = '';
-  submitBtn.textContent = 'submit';
+  submitBtn.textContent = 'Submit';
 }
+
+// ------ Displays alert  ------- 
+const displayAlert = (text, action) => {
+  alert.textContent = text;
+  alert.classList.add(`alert-${action}`);
+  // remove the alert 
+  setTimeout(() => {
+    alert.textContent = '';
+    alert.classList.remove(`alert-${action}`);
+  }, 1000);
+  }
+  
 // ------ Adding an item ------- 
 const addTask = (e) => {
     e.preventDefault();
@@ -30,7 +53,7 @@ const addTask = (e) => {
         // passing new item to add to list
         createItem(id, value);
          // display alert
-         displayAlert('item added to the list', 'green');
+         displayAlert('Item added to the list', 'green');
         taskContainer.classList.add('display-container');
         // add to local storage 
         addToLocalStorage(id, value);
@@ -39,48 +62,39 @@ const addTask = (e) => {
     // edits item
     } else if (value && editFlag) {
       editElement.innerHTML = value;
-      displayAlert('task changed', 'green');
+      displayAlert('Task changed', 'green');
       // local storage 
       editLocalStorage(editID, value);
       backToDefault();
     } else {
         displayAlert('Please enter a value', 'purple');
     }
-};
+}
+
 // ------ Adds item to DOM ------- 
 const createItem = (id, value) => {
-    // creating container to hold each list item with their buttons
-    const element = document.createElement('article');
-    // adding class for styling only 
-    element.classList.add('list-style');
-    // adding id to task 
-    const attr = document.createAttribute('data-id');
-    attr.value = id;
-    element.setAttributeNode(attr);
-    element.innerHTML = ` <p class="task-style">${value}</p>
-    <div class="btn-container">
-      <button type="button" class="edit-btn">
-        <i class="fas fa-edit"></i>
-      </button>
-      <button type="button" class="delete-btn">
-        <i class="fas fa-trash"></i>
-      </button>
-    </div>`;
-    const deleteBtn = element.querySelector('.delete-btn');
-    const editBtn = element.querySelector('.edit-btn'); 
-    deleteBtn.addEventListener('click', deleteItem);
-    editBtn.addEventListener('click', editItem);
-    taskList.appendChild(element);
-}
-// ------ Displays alert  ------- 
-const displayAlert = (text, action) => {
-alert.textContent = text;
-alert.classList.add(`alert-${action}`);
-// remove the alert 
-setTimeout(() => {
-  alert.textContent = '';
-  alert.classList.remove(`alert-${action}`);
-}, 1000);
+  // creating container to hold each list item with their buttons
+  const element = document.createElement('article');
+  // adding class for styling only 
+  element.classList.add('list-style');
+  // adding id to task 
+  const attr = document.createAttribute('data-id');
+  attr.value = id;
+  element.setAttributeNode(attr);
+  element.innerHTML = ` <p class="task-style">${value}</p>
+  <div class="btn-container">
+    <button type="button" class="edit-btn">
+      <i class="fas fa-edit"></i>
+    </button>
+    <button type="button" class="delete-btn">
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>`;
+  const deleteBtn = element.querySelector('.delete-btn');
+  const editBtn = element.querySelector('.edit-btn'); 
+  deleteBtn.addEventListener('click', deleteItem);
+  editBtn.addEventListener('click', editItem);
+  taskList.appendChild(element);
 }
 
 // ------- Clear items --------
@@ -97,6 +111,13 @@ backToDefault();
 // local storage removes entire list 
 localStorage.removeItem('taskList');
 }
+
+// ~~~~~~~~~~~~~~ Event listeners ~~~~~~~~~~~
+// submit form 
+form.addEventListener('submit', addTask);
+// clear btn 
+clearBtn.addEventListener('click', clearItem)
+// load items 
 
 // delete single item 
 const deleteItem = (e) => {
@@ -126,15 +147,8 @@ const editItem = (e) => {
   editID = element.dataset.id;
   submitBtn.innerHTML = 'edit';
 }
-// ~~~~ Event listeners ~~~~
-// submit form 
-form.addEventListener('submit', addTask);
-// clear btn 
-clearBtn.addEventListener('click', clearItem)
-// load items 
 
-
-// local storage 
+// ~~~~~~~~~~~ Local storage  ~~~~~~~~~~~~~~
 // check if local storage is empty or not 
 const getLocalStorage = () => {
    // Check if 'taskList' item exists in local storage
@@ -166,7 +180,7 @@ const editLocalStorage = (id, value) => {
   });
   localStorage.setItem('taskList', JSON.stringify(list));
 }
-// delete single item 
+// delete single item from local storage 
 const removeFromLocalStorage = id => {
   let list = getLocalStorage();
 
@@ -177,13 +191,3 @@ const removeFromLocalStorage = id => {
   })
   localStorage.setItem('taskList', JSON.stringify(list));
 }
-// load items that already exist 
-const setList = () => {
-  let list = getLocalStorage();
-  if (list.length > 0) {
-    list.forEach(task => createItem(task.id, task.value))
-  }
-  taskContainer.classList.add('display-container');
-}
-// load items 
-window.addEventListener('DOMContentLoaded', setList);
