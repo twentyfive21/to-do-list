@@ -34,12 +34,17 @@ const addTask = (e) => {
          displayAlert('item added to the list', 'green');
         taskContainer.classList.add('display-container');
         // add to local storage 
-
+        // addToLocalStorage(id, value);
 
         // set back to default 
         backToDefault();
     // edits item
     } else if (value && editFlag) {
+      editElement.innerHTML = value;
+      console.log(editElement)
+      displayAlert('task changed', 'green');
+      // local storage 
+      // addToLocalStorage(id, value);
       backToDefault();
     } else {
         displayAlert('Please enter a value', 'purple');
@@ -119,7 +124,8 @@ const editItem = (e) => {
   // grabs entire item with id 
   const element = e.currentTarget.parentElement.parentElement;
   // grabs task name 
-  const editElement = e.currentTarget.parentElement.previousElementSibling;
+   editElement = e.currentTarget.parentElement.previousElementSibling;
+  console.log(editElement)
   // sets the input form to the edit element 
   formTask.value = editElement.innerHTML;
   editFlag = true;

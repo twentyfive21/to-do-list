@@ -38,7 +38,7 @@ h1 {
   background-color: var(--white);
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
-  width: 70vw;
+  width: 90vw;
   margin: 120px 0px;
   padding: 35px 0px;
 }
@@ -124,6 +124,7 @@ color:var(--light-pink);
 @media (max-width: 500px) {
     .list-style {
         width: 80vw;
+        letter-spacing: 0;
     }
     .main-section {
         width: 90vw;
