@@ -6,7 +6,6 @@ const formTask = document.getElementById('task');
 const taskContainer = document.querySelector('.to-do-container');
 const taskList = document.querySelector('.to-do-items');
 
-
 // edit option 
 let editElement;
 let editFlag = false;
@@ -34,8 +33,7 @@ const addTask = (e) => {
          displayAlert('item added to the list', 'green');
         taskContainer.classList.add('display-container');
         // add to local storage 
-        // addToLocalStorage(id, value);
-
+        addToLocalStorage(id, value);
         // set back to default 
         backToDefault();
     // edits item
@@ -97,10 +95,8 @@ if (items.length > 0) {
 taskContainer.classList.remove('display-container');
 displayAlert('List cleared !', 'green');
 backToDefault();
-// local storage 
-
-
-
+// local storage removes entire list 
+localStorage.removeItem('taskList');
 }
 
 // delete single item 
@@ -116,8 +112,7 @@ const deleteItem = (e) => {
   displayAlert('item removed', 'purple');
   backToDefault();
   // remove from local storage
-
-  
+  removeFromLocalStorage(id);
 }
 // edit func 
 const editItem = (e) => {
@@ -141,4 +136,44 @@ clearBtn.addEventListener('click', clearItem)
 
 
 // local storage 
+// check if local storage is empty or not 
+const getLocalStorage = () => {
+   // Check if 'taskList' item exists in local storage
+   // If it exists, parse and return the data else return empty []
+  return localStorage.getItem('taskList') 
+  ? JSON.parse(localStorage.getItem('taskList'))
+  : [];
+}
 
+// add to storage 
+const addToLocalStorage = (id, value) => {
+  // Create an object with id and value
+  const newTask = {id, value};
+  let list = getLocalStorage();
+  // Add the new object to the data array
+  list.push(newTask);
+   // Store the updated data in local storage
+  localStorage.setItem('taskList', JSON.stringify(list))
+}
+
+// delete single item 
+const removeFromLocalStorage = id => {
+  let list = getLocalStorage();
+
+  list = list.filter(task => {
+    if (task.id !== id) {
+      return list
+    }
+  })
+  localStorage.setItem('taskList', JSON.stringify(list));
+}
+// load items that already exist 
+const setList = () => {
+  let list = getLocalStorage();
+  if (list.length > 0) {
+    list.forEach(task => createItem(task.id, task.value))
+  }
+  taskContainer.classList.add('display-container');
+}
+// load items 
+window.addEventListener('DOMContentLoaded', setList);
