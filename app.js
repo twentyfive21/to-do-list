@@ -39,10 +39,9 @@ const addTask = (e) => {
     // edits item
     } else if (value && editFlag) {
       editElement.innerHTML = value;
-      console.log(editElement)
       displayAlert('task changed', 'green');
       // local storage 
-      // addToLocalStorage(id, value);
+      editLocalStorage(editID, value);
       backToDefault();
     } else {
         displayAlert('Please enter a value', 'purple');
@@ -153,9 +152,20 @@ const addToLocalStorage = (id, value) => {
   // Add the new object to the data array
   list.push(newTask);
    // Store the updated data in local storage
-  localStorage.setItem('taskList', JSON.stringify(list))
+  localStorage.setItem('taskList', JSON.stringify(list));
 }
-
+// edit local storage
+// Find the item with the specified id and update its value
+const editLocalStorage = (id, value) => {
+  let list = getLocalStorage();
+  list = list.map(task => {
+    if(task.id === id) {
+      task.value = value;
+    }
+    return task;
+  });
+  localStorage.setItem('taskList', JSON.stringify(list));
+}
 // delete single item 
 const removeFromLocalStorage = id => {
   let list = getLocalStorage();
