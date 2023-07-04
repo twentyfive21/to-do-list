@@ -116,7 +116,15 @@ const deleteItem = (e) => {
 }
 // edit func 
 const editItem = (e) => {
-  console.log(e.target);
+  // grabs entire item with id 
+  const element = e.currentTarget.parentElement.parentElement;
+  // grabs task name 
+  const editElement = e.currentTarget.parentElement.previousElementSibling;
+  // sets the input form to the edit element 
+  formTask.value = editElement.innerHTML;
+  editFlag = true;
+  editID = element.dataset.id;
+  submitBtn.innerHTML = 'edit';
 }
 // ~~~~ Event listeners ~~~~
 // submit form 
