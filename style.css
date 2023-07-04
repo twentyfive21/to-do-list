@@ -65,6 +65,7 @@ input {
 .submit-btn {
     width: auto;
     height: 5vh;
+    background-color: lightgrey;
 }
 
 .alert-purple {
