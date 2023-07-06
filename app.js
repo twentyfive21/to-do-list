@@ -99,9 +99,9 @@ const createItem = (id, value) => {
 
 // ------- Clear items --------
 const clearItem = () => {
-
+// grabs all list items with the class 
 const items = document.querySelectorAll('.list-style');
-
+// loops through if items > than 0 and removes it 
 if (items.length > 0) {
   items.forEach(item => taskList.removeChild(item));
 }
