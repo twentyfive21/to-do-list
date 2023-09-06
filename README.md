@@ -1,5 +1,5 @@
 # To-Do List Application
-## Welcome to the To-Do List Application! This application allows you to create, edit, and delete tasks, all while utilizing event listeners, local storage, and DOM manipulation.
+### Welcome to the To-Do List Application! This application allows you to create, edit, and delete tasks, all while utilizing event listeners, local storage, and DOM manipulation.
 
 ## If you want to check it out live [ https://todolistbytina.netlify.app/ ] !
 ## Features
